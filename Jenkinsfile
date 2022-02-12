@@ -20,25 +20,9 @@ pipeline {
         	steps{
             		jacoco()
 		}
-	}       
-       
-		
-	stage('Maven Package'){
-		steps{
-			echo 'Project packaging stage'
-			bat label: 'Project packaging', script: '''mvn package'''
-		}
 	} 
-			
-    Jacoco
- In Jenkinsfile,
- stage('Jacoco Coverage Report') {
-        steps{
-            jacoco()
-        }
-  }
-
-    stage('SonarQube'){
+	  
+	stage('SonarQube'){
 		steps{
 				bat label: '', script: '''mvn sonar:sonar \
 				-Dsonar.host.url=http://localhost:9000 \
@@ -46,8 +30,15 @@ pipeline {
 			}
    		}
 
+	    
+       
+		
+	stage('Maven Package'){
+		steps{
+			echo 'Project packaging stage'
+			bat label: 'Project packaging', script: '''mvn package'''
+		}
+	} 		
     
   }
 }
-
-
